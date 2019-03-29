@@ -1,7 +1,0 @@
-
-Name: Sara. 
-Last name: Simpsons. 
-Age: 23. 
-Sex: Femal. 
-Date of birth: 23.03.1994. 
-Color of hair: Blond. 
