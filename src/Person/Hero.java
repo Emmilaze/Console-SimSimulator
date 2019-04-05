@@ -1,7 +1,9 @@
 package Person;
 
-public class Hero {
+import java.io.FileWriter;
+import java.io.IOException;
 
+public class Hero {
 
     private String name;
     private String last_name;
@@ -45,4 +47,16 @@ public class Hero {
         return (name + " " + last_name);
     }
 
+    public String showNeeds(){
+        return this.heroNeeds.show();
+    }
+
+    public IHeroNeeds needs(){
+        return this.heroNeeds;
+    }
+
+    public void saveToFile(FileWriter writer) throws IOException{
+            writer.write(String.format("%s;%s;%s;%s;%s", name, last_name, age, sex, birth));
+            heroNeeds.saveToFile(writer);
+    }
 }

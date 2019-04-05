@@ -6,7 +6,6 @@ import Person.Hero;
 public class Main {
 
     public static ArrayList<Hero> heroes = new ArrayList<Hero>();
-
     public static void main(String[] args) throws IOException {
         heroes.addAll(readAllCharacters());
 

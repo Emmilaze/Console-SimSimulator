@@ -1,11 +1,14 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import static Person.HeroNeeds.*;
 import Person.Hero;
 
 public class CharacterStorage {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public static ArrayList<String> fullName = new ArrayList<>();
 
     public static Hero create_hero() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +29,7 @@ public class CharacterStorage {
                 HYGIENE_START, ENERGY_START);
         writer.write(name + ";" + last_name + ";" + age + ";" + sex + ";" + birth + ";" + MONEY_START
                 + ";" + HUNGER_START + ";" + BLADDER_START + ";" + HYGIENE_START + ";" + ENERGY_START);
-
+        reader.close();
         writer.close();
         return result;
     }
@@ -54,12 +57,23 @@ public class CharacterStorage {
     }
 
     public void deleting() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 0; i < Main.heroes.size(); i++)
             System.out.println(i + Main.heroes.get(i).toString());
         int index = Integer.parseInt(reader.readLine());
         Hero selectedHero = Main.heroes.get(index);
         File file = new File("./Characters/" + selectedHero.toString() + ".txt");
+
+        reader.close();
         file.delete();
 
     }
+
+    public static ArrayList<String> heroesNames(){
+        for(int i=0; i<Main.heroes.size(); i++)
+        fullName.add(Main.heroes.get(i).toString());
+        return fullName;
+    }
+
+
 }
