@@ -1,7 +1,6 @@
 package Person;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Calendar;
 
 public class HeroNeeds implements IHeroNeeds {
     public final static int MONEY_START = 2000;
@@ -33,36 +32,39 @@ public class HeroNeeds implements IHeroNeeds {
     }
 
     @Override
-    public void sleeping() {
+    public void sleeping(Calendar calendar) {
         energy = change(energy, 100);
         hunger = change(hunger, -30);
         bladder = change(bladder, -20);
         hygiene = change(hygiene, -10);
+        calendar.add(Calendar.HOUR, 8);
     }
 
     @Override
-    public void eating() {
+    public void eating(Calendar calendar) {
         energy = change(energy, -5);
         hunger = change(hunger, 100);
         bladder = change(bladder, -20);
         hygiene = change(hygiene, -5);
+        calendar.add(Calendar.MINUTE, 20);
     }
 
     @Override
-    public void takingShower() {
+    public void takingShower(Calendar calendar) {
         energy = change(energy, -5);
         hunger = change(hunger, -5);
         bladder = change(bladder, -5);
         hygiene = change(hygiene, 100);
+        calendar.add(Calendar.MINUTE, 20);
     }
 
     @Override
-    public void goToPee() {
-
+    public void goToPee(Calendar calendar) {
         energy = change(energy, -5);
         hunger = change(hunger, -5);
         bladder = change(bladder, 100);
         hygiene = change(hygiene, -5);
+        calendar.add(Calendar.MINUTE, 2);
     }
 
     public int change(int paramert, int delta) {
@@ -72,10 +74,6 @@ public class HeroNeeds implements IHeroNeeds {
         if (paramert < MIN)
             paramert = MIN;
         return paramert;
-    }
-
-    public void saveToFile(FileWriter writer) throws IOException {
-            writer.write(String.format(";%s;%s;%s;%s;%s", money, hunger, bladder, hygiene, energy));
     }
 }
 

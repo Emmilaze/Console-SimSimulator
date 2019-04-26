@@ -38,6 +38,7 @@ public class MainMenu {
                 }
 
             }
+            break;
 
             case "Random hero":
             {
@@ -51,6 +52,7 @@ public class MainMenu {
                     e.printStackTrace();
                 }
             }
+            break;
         }
         return null;
     }

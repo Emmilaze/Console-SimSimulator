@@ -1,13 +1,15 @@
 package Person;
 
+import java.util.Calendar;
+
 public interface IHeroNeeds {
 
-    void sleeping();
+    void sleeping(Calendar calendar);
 
-    void eating();
+    void eating(Calendar calendar);
 
-    void takingShower();
+    void takingShower(Calendar calendar);
 
-    void goToPee();
+    void goToPee(Calendar calendar);
 
 }

@@ -1,10 +1,15 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import static Person.HeroNeeds.*;
+
 import Person.Hero;
+import com.google.gson.Gson;
 
 public class CharacterStorage {
 
@@ -12,6 +17,8 @@ public class CharacterStorage {
 
     public static Hero create_hero() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Calendar calendar = new GregorianCalendar(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(),
+                LocalDateTime.now().getDayOfMonth());
         System.out.println("Please enter the name:");
         String name = reader.readLine();
         System.out.println("Please enter the last name:");
@@ -20,39 +27,15 @@ public class CharacterStorage {
         int age = Integer.parseInt(reader.readLine());
         System.out.println("Please enter the sex:");
         String sex = reader.readLine();
-        System.out.println("Please enter the date of birth:");
-        String birth = reader.readLine();
-
-        FileWriter writer = new FileWriter("./Characters/" + name + " " + last_name + ".txt");
-        Hero result = new Hero(name, last_name, age, sex, birth);
-        result.newHeroNeeds(MONEY_START, HUNGER_START, BLADDER_START,
-                HYGIENE_START, ENERGY_START);
-        writer.write(name + ";" + last_name + ";" + age + ";" + sex + ";" + birth + ";" + MONEY_START
-                + ";" + HUNGER_START + ";" + BLADDER_START + ";" + HYGIENE_START + ";" + ENERGY_START);
-        reader.close();
-        writer.close();
+        Hero result = new Hero(name, last_name, age, sex, calendar, false);
+        result.newHeroNeeds(MONEY_START, HUNGER_START, BLADDER_START, HYGIENE_START, ENERGY_START);
+        result.newSkills();
         return result;
     }
 
-    public static Hero read_hero(File file) throws IOException {
-        String content = Files.lines(Paths.get(file.getPath())).reduce("", String::concat);
-        String[] subStr;
-
-        subStr = content.split(";");
-        String name = subStr[0];
-        String last_name = subStr[1];
-        int age = Integer.parseInt(subStr[2]);
-        String sex = subStr[3];
-        String birth = subStr[4];
-
-        int money=Integer.parseInt(subStr[5]);
-        int hunger=Integer.parseInt(subStr[6]);
-        int bladder=Integer.parseInt(subStr[7]);
-        int hygiene=Integer.parseInt(subStr[8]);
-        int energy=Integer.parseInt(subStr[9]);
-
-        Hero result = new Hero(name, last_name, age, sex, birth);
-        result.newHeroNeeds(money, hunger, bladder, hygiene, energy);
+    public static Hero read_hero(File file, Gson GSON) throws IOException {
+        String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
+        Hero result = GSON.fromJson(content, Hero.class);
         return result;
     }
 
@@ -66,12 +49,11 @@ public class CharacterStorage {
 
         reader.close();
         file.delete();
-
     }
 
-    public static ArrayList<String> heroesNames(){
-        for(int i=0; i<Main.heroes.size(); i++)
-        fullName.add(Main.heroes.get(i).toString());
+    public static ArrayList<String> heroesNames() {
+        for (int i = 0; i < Main.heroes.size(); i++)
+            fullName.add(Main.heroes.get(i).toString());
         return fullName;
     }
 
