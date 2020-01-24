@@ -1,0 +1,57 @@
+{
+  "name": "Mirin",
+  "last_name": "Sherman",
+  "age": 75,
+  "sex": "Female",
+  "heroNeeds": {
+    "money": 2000,
+    "hunger": 65,
+    "bladder": 100,
+    "hygiene": 85,
+    "energy": 95
+  },
+  "calendar": {
+    "year": 2020,
+    "month": 1,
+    "dayOfMonth": 24,
+    "hourOfDay": 19,
+    "minute": 49,
+    "second": 0
+  },
+  "skills": {
+    "painting": {
+      "name": "Painting",
+      "level": 1
+    },
+    "dancing": {
+      "name": "Dancing",
+      "level": 0
+    },
+    "gardening": {
+      "name": "Gardening",
+      "level": 1
+    },
+    "logic": {
+      "name": "Logic",
+      "level": 0
+    },
+    "photography": {
+      "name": "Photography",
+      "level": 1
+    },
+    "playingTheGuitar": {
+      "name": "Playing the guitar",
+      "level": 0
+    },
+    "programming": {
+      "name": "Programming",
+      "level": 0
+    },
+    "writing": {
+      "name": "Writing",
+      "level": 0
+    }
+  },
+  "haveJob": false,
+  "married": false
+}
