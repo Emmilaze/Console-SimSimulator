@@ -1,5 +1,7 @@
 # Sim Simulator with console interface
 
+## Used: GSON
+
 + A console game made similar to the sims game.
 + You can create person with your own parametes or create full random person. 
 + Improve characters skills. Satisfy the needs of the character.
@@ -15,5 +17,3 @@
 
 ## Skills:
 ![Image alt](https://github.com/emmilaze/Console-SimSimulator/raw/master/images/skills.png)
-
-## Used: GSON
